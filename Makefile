@@ -1,7 +1,11 @@
 VERSION = 3
 PATCHLEVEL = 10
 SUBLEVEL = 49
+<<<<<<< HEAD
 EXTRAVERSION = -hx-abhi-R1
+=======
+EXTRAVERSION = -Tarun93
+>>>>>>> 89ae112... misc: compilation fixes
 NAME = TOSSUG Baby Fish
 
 # *DOCUMENTATION*
