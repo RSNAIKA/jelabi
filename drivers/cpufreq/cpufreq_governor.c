@@ -47,8 +47,6 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 	else
 ElementalX governor version 2
 	} else if (dbs_data->cdata->governor == GOV_ELEMENTALX) {
-		ex_tuners = dbs_data->tuners;
-		ex_dbs_info = dbs_data->cdata->get_cpu_dbs_info_s(cpu);
 		sampling_rate = ex_tuners->sampling_rate;
 		ignore_nice = ex_tuners->ignore_nice_load;
 	} else {
