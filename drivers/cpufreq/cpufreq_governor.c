@@ -43,12 +43,9 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 
 	if (dbs_data->cdata->governor == GOV_ONDEMAND)
 		ignore_nice = od_tuners->ignore_nice_load;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	else
-=======
-=======
->>>>>>> 60ccb47... ElementalX governor version 2
+ElementalX governor version 2
 	} else if (dbs_data->cdata->governor == GOV_ELEMENTALX) {
 		ex_tuners = dbs_data->tuners;
 		ex_dbs_info = dbs_data->cdata->get_cpu_dbs_info_s(cpu);
@@ -56,7 +53,7 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 		ignore_nice = ex_tuners->ignore_nice_load;
 	} else {
 		sampling_rate = cs_tuners->sampling_rate;
->>>>>>> 60ccb47... ElementalX governor version 2
+ElementalX governor version 2
 		ignore_nice = cs_tuners->ignore_nice_load;
 
 	policy = cdbs->cur_policy;
