@@ -1,4 +1,4 @@
- /* Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+ /* Copyright (c) 2014-2016, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -401,44 +401,42 @@ static void msm8x16_ext_spk_gpio_free(void)
 
 static void msm8x16_ext_spk_delayed_enable(struct work_struct *work)
 {
-	int i;
+	int i = 0;
 
 	gpio_direction_output(EXT_SPK_AMP_HEADSET_GPIO, 0);
-	usleep_range(3000, 5000);
+	usleep_range(13000, 15000);
 	gpio_direction_output(EXT_SPK_AMP_GPIO, 1);
 	usleep_range(13000, 15000);
 
-	for (i = 0; i < 1; i++) {
+	for (i = 0; i < 5; i++) {
 		gpio_direction_output(EXT_SPK_AMP_GPIO_1, 1);
-		usleep_range(13000, 15000);
+		usleep_range(100, 105);
 		gpio_direction_output(EXT_SPK_AMP_GPIO_1, 0);
-		usleep_range(3000, 5000);
+		usleep_range(100, 105);
 	}
 	gpio_direction_output(EXT_SPK_AMP_GPIO_1, 1);
-	usleep_range(13000, 15000);
 
-	pr_info("%s: Enable external speaker PAs.\n", __func__);
+	pr_debug("%s: Enable external speaker PAs.\n", __func__);
 }
 
 static void msm8x16_ext_spk_delayed_dualmode(struct work_struct *work)
 {
-	int i;
+	int i = 0;
 
 	gpio_direction_output(EXT_SPK_AMP_HEADSET_GPIO, 1);
 	usleep_range(13000, 15000);
 	gpio_direction_output(EXT_SPK_AMP_GPIO, 1);
 	usleep_range(13000, 15000);
 
-	for (i = 0; i < 1; i++) {
+	for (i = 0; i < 5; i++) {
 		gpio_direction_output(EXT_SPK_AMP_GPIO_1, 1);
-		usleep_range(13000, 15000);
+		usleep_range(100, 105);
 		gpio_direction_output(EXT_SPK_AMP_GPIO_1, 0);
-		usleep_range(3000, 5000);
+		usleep_range(100, 105);
 	}
 	gpio_direction_output(EXT_SPK_AMP_GPIO_1, 1);
-	usleep_range(13000, 15000);
 
-	pr_info("%s: Enable external speaker PAs dualmode.\n", __func__);
+	pr_debug("%s: Enable external speaker PAs dualmode.\n", __func__);
 }
 #endif
 
@@ -449,8 +447,10 @@ static const struct snd_soc_dapm_widget msm8x16_dapm_widgets[] = {
 	SND_SOC_DAPM_MIC("Handset Mic", NULL),
 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
 	SND_SOC_DAPM_MIC("Secondary Mic", NULL),
+	SND_SOC_DAPM_MIC("Digital Mic0", NULL),
 	SND_SOC_DAPM_MIC("Digital Mic1", NULL),
 	SND_SOC_DAPM_MIC("Digital Mic2", NULL),
+	SND_SOC_DAPM_MIC("Digital Mic3", NULL),
 };
 
 static char const *rx_bit_format_text[] = {"S16_LE", "S24_LE"};
@@ -674,8 +674,7 @@ static int lineout_status_put(struct snd_kcontrol *kcontrol,
 	case 0:
 		gpio_direction_output(EXT_SPK_AMP_GPIO_1, 0);
 		usleep_range(3000, 5000);
-		gpio_direction_output(EXT_SPK_AMP_GPIO , 0);
-		usleep_range(3000, 5000);
+		gpio_direction_output(EXT_SPK_AMP_GPIO, 0);
 		break;
 	case 1:
 		schedule_delayed_work(&lineout_amp_enable, msecs_to_jiffies(100));
@@ -1794,6 +1793,9 @@ static int msm_audrx_init(struct snd_soc_pcm_runtime *rtd)
 	snd_soc_dapm_ignore_suspend(dapm, "EAR");
 	snd_soc_dapm_ignore_suspend(dapm, "HEADPHONE");
 	snd_soc_dapm_ignore_suspend(dapm, "SPK_OUT");
+#ifdef CONFIG_MACH_WT88047
+	snd_soc_dapm_ignore_suspend(dapm, "SPK_EXTN_OUT");
+#endif
 	snd_soc_dapm_ignore_suspend(dapm, "AMIC1");
 	snd_soc_dapm_ignore_suspend(dapm, "AMIC2");
 	snd_soc_dapm_ignore_suspend(dapm, "AMIC3");
@@ -1839,6 +1841,19 @@ static int msm_audrx_init_wcd(struct snd_soc_pcm_runtime *rtd)
 	snd_soc_dapm_new_controls(dapm, msm8x16_dapm_widgets,
 				ARRAY_SIZE(msm8x16_dapm_widgets));
 
+	snd_soc_dapm_ignore_suspend(dapm, "Headset Mic");
+	snd_soc_dapm_ignore_suspend(dapm, "Digital Mic0");
+	snd_soc_dapm_ignore_suspend(dapm, "Digital Mic1");
+	snd_soc_dapm_ignore_suspend(dapm, "Digital Mic2");
+	snd_soc_dapm_ignore_suspend(dapm, "Digital Mic3");
+
+	snd_soc_dapm_ignore_suspend(dapm, "AMIC2");
+	snd_soc_dapm_ignore_suspend(dapm, "DMIC0");
+	snd_soc_dapm_ignore_suspend(dapm, "DMIC1");
+	snd_soc_dapm_ignore_suspend(dapm, "DMIC2");
+	snd_soc_dapm_ignore_suspend(dapm, "DMIC3");
+	snd_soc_dapm_ignore_suspend(dapm, "SPK1 OUT");
+	snd_soc_dapm_ignore_suspend(dapm, "SPK2 OUT");
 	snd_soc_dapm_sync(dapm);
 
 	/* start mbhc */
@@ -1919,7 +1934,7 @@ static struct snd_soc_dai_link msm8x16_9326_dai[] = {
 	{ /* FrontEnd DAI Link, CPE Service */
 		.name = "CPE Listen service",
 		.stream_name = "CPE Listen Audio Service",
-		.cpu_dai_name = "msm-dai-q6-mi2s.3",
+		.cpu_dai_name = "CPE_LSM_NOHOST",
 		.platform_name = "msm-cpe-lsm",
 		.trigger = {SND_SOC_DPCM_TRIGGER_POST,
 			SND_SOC_DPCM_TRIGGER_POST},
@@ -1928,7 +1943,6 @@ static struct snd_soc_dai_link msm8x16_9326_dai[] = {
 		.ignore_pmdown_time = 1,
 		.codec_dai_name = "tasha_mad1",
 		.codec_name = "tasha_codec",
-		.ops = &msm8x16_quat_mi2s_be_ops,
 	},
 };
 
