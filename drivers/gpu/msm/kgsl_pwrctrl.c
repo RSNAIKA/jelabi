@@ -45,7 +45,6 @@
 #define INIT_UDELAY		200
 #define MAX_UDELAY		2000
 
-
 /* Number of jiffies for a full thermal cycle */
 #define TH_HZ			20
 
