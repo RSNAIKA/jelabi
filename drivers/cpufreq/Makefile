@@ -15,6 +15,13 @@ obj-$(CONFIG_CPU_BOOST)			+= cpu-boost.o
 
 obj-$(CONFIG_GENERIC_CPUFREQ_CPU0)	+= cpufreq-cpu0.o
 
+# Added Governors
+obj-$(CONFIG_CPU_FREQ_GOV_DARKNESS)	+= cpufreq_darkness.o
+obj-$(CONFIG_CPU_FREQ_GOV_NIGHTMARE)        += cpufreq_nightmare.o
+obj-$(CONFIG_CPU_FREQ_GOV_ZZMOOVE)      += cpufreq_zzmoove.o
+obj-$(CONFIG_CPU_FREQ_GOV_LULZACTIVEQ)        += cpufreq_lulzactiveq.o
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTASS2)        += cpufreq_smartass2.o
+obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVEX)        += cpufreq_interactiveX.o
 ##################################################################################
 # x86 drivers.
 # Link order matters. K8 is preferred to ACPI because of firmware bugs in early
