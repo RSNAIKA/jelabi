@@ -32,7 +32,7 @@ cd /home/abhi/redmi2/output/Img/bootfiles
 name=$(date '+ %d%m%y')
 for file in image-new*
 do
-  mv "$file" "$name${file#image-new}"
+  mv "$file" "$name-boot${file#image-new}"
 done
 nautilus /home/abhi/redmi2/output/Img/bootfiles
 
