@@ -167,8 +167,11 @@ static ssize_t sel_write_enforce(struct file *file, const char __user *buf,
 	if (sscanf(page, "%d", &new_value) != 1)
 		goto out;
 
+<<<<<<< HEAD
          new_val = 0;
 
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 	if (new_value != selinux_enforcing) {
 		length = task_has_security(current, SECURITY__SETENFORCE);
 		if (length)

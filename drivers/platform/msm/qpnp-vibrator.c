@@ -15,7 +15,10 @@
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 #include <linux/hrtimer.h>
 #include <linux/of_device.h>
 #include <linux/spmi.h>
@@ -326,6 +329,7 @@ static int qpnp_vib_parse_dt(struct qpnp_vib *vib)
 	return 0;
 }
 
+<<<<<<< HEAD
 static ssize_t qpnp_vib_level_show(struct device *dev,
 					struct device_attribute *attr,
 					char *buf)
@@ -380,6 +384,8 @@ static ssize_t qpnp_vib_level_store(struct device *dev,
 }
 static DEVICE_ATTR(vtg_level, S_IRUGO | S_IWUSR, qpnp_vib_level_show, qpnp_vib_level_store);
 
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 static int qpnp_vibrator_probe(struct spmi_device *spmi)
 {
 	struct qpnp_vib *vib;
@@ -427,8 +433,11 @@ static int qpnp_vibrator_probe(struct spmi_device *spmi)
 	if (rc < 0)
 		return rc;
 
+<<<<<<< HEAD
 	device_create_file(vib->timed_dev.dev, &dev_attr_vtg_level);
 
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 	return rc;
 }
 

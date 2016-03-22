@@ -13,7 +13,11 @@
 #ifndef MSM_CSID_2_0_HWREG_H
 #define MSM_CSID_2_0_HWREG_H
 
+<<<<<<< HEAD
 #include "../msm_csid.h"
+=======
+#include "msm_csid.h"
+>>>>>>> kuma/cm-13.0-wt88047
 
 struct csid_reg_parms_t csid_v2_0 = {
 

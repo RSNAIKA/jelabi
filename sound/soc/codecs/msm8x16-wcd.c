@@ -1244,6 +1244,7 @@ static int msm8x16_wcd_readable(struct snd_soc_codec *ssc, unsigned int reg)
 	return msm8x16_wcd_reg_readable[reg];
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 extern int snd_hax_reg_access(unsigned int);
 extern unsigned int snd_hax_cache_read(unsigned int);
@@ -1260,6 +1261,12 @@ int msm8x16_wcd_write(struct snd_soc_codec *codec, unsigned int reg,
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 	int val;
 #endif
+=======
+static int msm8x16_wcd_write(struct snd_soc_codec *codec, unsigned int reg,
+			     unsigned int value)
+{
+	int ret;
+>>>>>>> kuma/cm-13.0-wt88047
 	struct msm8x16_wcd_priv *msm8x16_wcd = snd_soc_codec_get_drvdata(codec);
 
 	dev_dbg(codec->dev, "%s: Write from reg 0x%x val 0x%x\n",
@@ -1279,6 +1286,7 @@ int msm8x16_wcd_write(struct snd_soc_codec *codec, unsigned int reg,
 				reg);
 		return -ENODEV;
 	} else
+<<<<<<< HEAD
 		#ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 	if (!snd_hax_reg_access(reg)) {
 		if (!((val = snd_hax_cache_read(reg)) != -1)) {
@@ -1303,6 +1311,13 @@ static
 #endif
 unsigned int msm8x16_wcd_read(struct snd_soc_codec *codec,
                                 unsigned int reg)
+=======
+		return __msm8x16_wcd_reg_write(codec, reg, (u8)value);
+}
+
+static unsigned int msm8x16_wcd_read(struct snd_soc_codec *codec,
+				unsigned int reg)
+>>>>>>> kuma/cm-13.0-wt88047
 {
 	unsigned int val;
 	int ret;
@@ -2496,6 +2511,16 @@ static const struct snd_kcontrol_new msm8x16_wcd_snd_controls[] = {
 	SOC_ENUM_EXT("LOOPBACK Mode", msm8x16_wcd_loopback_mode_ctl_enum[0],
 		msm8x16_wcd_loopback_mode_get, msm8x16_wcd_loopback_mode_put),
 
+<<<<<<< HEAD
+=======
+	SOC_SINGLE_TLV("ADC1 Volume", MSM8X16_WCD_A_ANALOG_TX_1_EN, 3,
+					8, 0, analog_gain),
+	SOC_SINGLE_TLV("ADC2 Volume", MSM8X16_WCD_A_ANALOG_TX_2_EN, 3,
+					8, 0, analog_gain),
+	SOC_SINGLE_TLV("ADC3 Volume", MSM8X16_WCD_A_ANALOG_TX_3_EN, 3,
+					8, 0, analog_gain),
+
+>>>>>>> kuma/cm-13.0-wt88047
 	SOC_SINGLE_SX_TLV("RX1 Digital Volume",
 			  MSM8X16_WCD_A_CDC_RX1_VOL_CTL_B2_CTL,
 			0,  -84, 40, digital_gain),
@@ -5398,11 +5423,14 @@ void msm8x16_wcd_hs_detect_exit(struct snd_soc_codec *codec)
 }
 EXPORT_SYMBOL(msm8x16_wcd_hs_detect_exit);
 
+<<<<<<< HEAD
 #ifdef CONFIG_SOUND_CONTROL_HAX_GPL
 struct snd_kcontrol_new *gpl_faux_snd_controls_ptr =
 		(struct snd_kcontrol_new *)msm8x16_wcd_snd_controls;
 #endif
 
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 static void msm8x16_wcd_set_micb_v(struct snd_soc_codec *codec)
 {
 
@@ -5461,6 +5489,7 @@ static void msm8x16_wcd_configure_cap(struct snd_soc_codec *codec,
 	}
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 struct snd_kcontrol_new *gpl_faux_snd_controls_ptr =
 		(struct snd_kcontrol_new *)msm8x16_wcd_snd_controls;
@@ -5468,6 +5497,8 @@ struct snd_soc_codec *fauxsound_codec_ptr;
 EXPORT_SYMBOL(fauxsound_codec_ptr);
 #endif
 
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 static int msm8x16_wcd_codec_probe(struct snd_soc_codec *codec)
 {
 	struct msm8x16_wcd_priv *msm8x16_wcd_priv;
@@ -5476,11 +5507,14 @@ static int msm8x16_wcd_codec_probe(struct snd_soc_codec *codec)
 
 	int i, ret;
 
+<<<<<<< HEAD
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 	pr_info("msm8x16_wcd codec probe...\n");
 	fauxsound_codec_ptr = codec;
 #endif
 
+=======
+>>>>>>> kuma/cm-13.0-wt88047
 	dev_dbg(codec->dev, "%s()\n", __func__);
 
 	msm8x16_wcd_priv = kzalloc(sizeof(struct msm8x16_wcd_priv), GFP_KERNEL);

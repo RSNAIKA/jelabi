@@ -1,7 +1,11 @@
 VERSION = 3
 PATCHLEVEL = 10
 SUBLEVEL = 49
+<<<<<<< HEAD
 EXTRAVERSION = -ElixiR_R1
+=======
+EXTRAVERSION =
+>>>>>>> kuma/cm-13.0-wt88047
 NAME = TOSSUG Baby Fish
 
 # *DOCUMENTATION*
