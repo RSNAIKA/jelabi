@@ -306,12 +306,10 @@ struct wcd9xxx_reg_val {
 };
 
 int wcd9xxx_interface_reg_read(struct wcd9xxx *wcd9xxx, unsigned short reg);
-<<<<<<< HEAD
 #ifdef CONFIG_SOUND_CONTROL_HAX_3_GPL
 int wcd9xxx_reg_read_safe(struct wcd9xxx *wcd9xxx, unsigned short reg);
 #endif
-=======
->>>>>>> kuma/cm-13.0-wt88047
+
 int wcd9xxx_interface_reg_write(struct wcd9xxx *wcd9xxx, unsigned short reg,
 		u8 val);
 int wcd9xxx_get_logical_addresses(u8 *pgd_la, u8 *inf_la);

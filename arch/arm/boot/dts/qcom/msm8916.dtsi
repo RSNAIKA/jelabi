@@ -879,10 +879,7 @@
 		interrupts = <0 29 1>;
 		qcom,rx-ring-size = <32>;
 		qcom,max-rx-mtu = <4096>;
-<<<<<<< HEAD
                 qcom,fast-shutdown;
-=======
->>>>>>> kuma/cm-13.0-wt88047
 	};
 
 	qcom_tzlog: tz-log@8600720 {

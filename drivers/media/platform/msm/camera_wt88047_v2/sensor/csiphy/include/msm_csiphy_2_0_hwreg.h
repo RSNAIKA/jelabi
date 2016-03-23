@@ -13,11 +13,8 @@
 #ifndef MSM_CSIPHY_2_0_HWREG_H
 #define MSM_CSIPHY_2_0_HWREG_H
 
-<<<<<<< HEAD
 #include "../msm_csiphy.h"
-=======
-#include "msm_csiphy.h"
->>>>>>> kuma/cm-13.0-wt88047
+
 
 struct csiphy_reg_parms_t csiphy_v2_0 = {
 	/*MIPI CSI PHY registers*/

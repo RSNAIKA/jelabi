@@ -97,10 +97,7 @@ config CPU_FREQ_DEFAULT_GOV_ONDEMAND
 	  governor. If unsure have a look at the help section of the
 	  driver. Fallback governor will be the performance governor.
 
-<<<<<<< HEAD
 
-=======
->>>>>>> kuma/cm-13.0-wt88047
 config CPU_FREQ_DEFAULT_GOV_CONSERVATIVE
 	bool "conservative"
 	select CPU_FREQ_GOV_CONSERVATIVE
@@ -122,7 +119,6 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
 
-<<<<<<< HEAD
 config CPU_FREQ_DEFAULT_GOV_DARKNESS
  	bool "darkness"
  	select CPU_FREQ_GOV_DARKNESS
@@ -134,8 +130,6 @@ config CPU_FREQ_DEFAULT_GOV_LIONFISH
  	help
  	  Use the CPUFreq governor 'lionfish' as default.
 
-=======
->>>>>>> kuma/cm-13.0-wt88047
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -193,10 +187,8 @@ config CPU_FREQ_GOV_ONDEMAND
 
 	  If in doubt, say N.
 
-<<<<<<< HEAD
 
-=======
->>>>>>> kuma/cm-13.0-wt88047
+
 config CPU_FREQ_GOV_INTERACTIVE
 	tristate "'interactive' cpufreq policy governor"
 	help
@@ -238,7 +230,6 @@ config CPU_FREQ_GOV_CONSERVATIVE
 
 	  If in doubt, say N.
 
-<<<<<<< HEAD
 config CPU_FREQ_GOV_DARKNESS
  	tristate "'darkness' cpufreq governor"
  	depends on CPU_FREQ
@@ -265,8 +256,6 @@ config CPU_FREQ_GOV_LIONFISH
  
   	  If in doubt, say N.
  
-=======
->>>>>>> kuma/cm-13.0-wt88047
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
 	depends on CPU_FREQ

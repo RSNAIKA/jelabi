@@ -52,14 +52,10 @@
 
 #include <linux/msm-bus.h>
 
-<<<<<<< HEAD
 #ifdef CONFIG_FORCE_FAST_CHARGE
  #include <linux/fastchg.h>
  #endif
  
-
-=======
->>>>>>> kuma/cm-13.0-wt88047
 #define MSM_USB_BASE	(motg->regs)
 #define MSM_USB_PHY_CSR_BASE (motg->phy_csr_regs)
 
@@ -1971,7 +1967,6 @@ static void msm_otg_notify_charger(struct msm_otg *motg, unsigned mA)
 	if (motg->cur_power == mA)
 		return;
 
-<<<<<<< HEAD
 #ifdef CONFIG_FORCE_FAST_CHARGE
 	if (force_fast_charge > 0 && mA > 0) {
 		mA = IDEV_ACA_CHG_MAX;
@@ -1981,8 +1976,6 @@ static void msm_otg_notify_charger(struct msm_otg *motg, unsigned mA)
 	}
 #endif
 
-=======
->>>>>>> kuma/cm-13.0-wt88047
 	dev_info(motg->phy.dev, "Avail curr from USB = %u\n", mA);
 	msm_otg_dbg_log_event(&motg->phy, "AVAIL CURR FROM USB",
 			mA, motg->chg_type);
