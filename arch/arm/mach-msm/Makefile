@@ -71,5 +71,8 @@ obj-$(CONFIG_MSM_SMCMOD) += smcmod.o
 obj-$(CONFIG_ARCH_MSM8974) += msm_mpmctr.o
 
 obj-$(CONFIG_PERFMAP) += perfmap.o
+<<<<<<< HEAD
 
 obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
+=======
+>>>>>>> kuma/cm-13.0-wt88047
